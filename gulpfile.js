@@ -3,6 +3,9 @@ var less = require('gulp-less');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
+var markdown = require('gulp-markdown');
+var markdowndocs = require('gulp-markdown-docs');
+
 
 /**
  * 定义静态文件路径
@@ -69,35 +72,33 @@ var less2css = function(sysName, appId) {
 };
 
 /**
- * @desc markdown 编译成文件任务
- * @method html2js
- * @params {sysName: 系统名称} [admin, front]
- * @params {appId: 应用id} [default, public]
+ * @desc markdown 编译成 html 文件任务
+ * @method md2html
+ * @desc src/目录下的都要编译
  * */
-var md2html = function(language) {
+var md2html = function() {
+
 };
 
 /**
  * less2css
  * */
-gulp.task('less2css-admin', function() {
-    less2css('admin', 'default');
-    less2css('admin', 'public');
+gulp.task('less2css', function() {
+    less2css();
 });
 
 /**
- * html2js
+ * md2html
  * */
-gulp.task('html2js-admin', function() {
-    html2js('admin', 'default');
-    html2js('admin', 'public');
+gulp.task('md2html', function() {
+    md2html();
 });
 
 /**
  * 监听
  */
 gulp.task('watch', function() {
-    gulp.watch(staticPaths.admin.lessDir + '/**/*.less', ['less2css-admin']);
+    gulp.watch(staticPaths.lessDir + '/**/*.less', ['less2css-admin']);
 });
 
 
